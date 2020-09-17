@@ -1,24 +1,16 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-
+import ColourBox from './components/ColourBox';
 export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.topBox}>
         <Text>Here are some boxes: </Text>
       </View>
-      <View style={[styles.container, styles.teal]}>
-        <Text style={styles.text}>Hello world!</Text>
-      </View>
-      <View style={[styles.container, styles.blue]}>
-        <Text style={styles.text}>Hello world!</Text>
-      </View>
-      <View style={[styles.container, styles.green]}>
-        <Text style={styles.text}>Hello world!</Text>
-      </View>
-      <View style={[styles.container, styles.orange]}>
-        <Text style={styles.text}>Hello world!</Text>
-      </View>
+      <ColourBox colourHex="#268bd2" colourName="Blue" />
+      <ColourBox colourHex="#d33682" colourName="Magenta" />
+      <ColourBox colourHex="#cb4b16" colourName="Orange" />
+      <ColourBox colourHex="#2aa198" colourName="Cyan" />
     </SafeAreaView>
   );
 }
