@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import ColourBox from './components/ColourBox';
+
 export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.topBox}>
-        <Text>Here are some boxes: </Text>
-      </View>
-      <ColourBox colourHex="#268bd2" colourName="Blue" />
-      <ColourBox colourHex="#d33682" colourName="Magenta" />
-      <ColourBox colourHex="#cb4b16" colourName="Orange" />
-      <ColourBox colourHex="#2aa198" colourName="Cyan" />
+      <FlatList
+        style={styles.topBox}
+        data={COLORS}
+        keyExtractor={(item) => item.colorName}
+        renderItem={({ item }) => (
+          <ColourBox colourHex={item.hexCode} colourName={item.colorName} />
+        )}
+        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+      />
     </SafeAreaView>
   );
 }
@@ -19,31 +22,31 @@ const styles = StyleSheet.create({
   topBox: {
     paddingTop: 30,
   },
-  teal: {
-    backgroundColor: 'teal',
-  },
-  blue: {
-    backgroundColor: 'blue',
-  },
-  green: {
-    backgroundColor: 'green',
-  },
-  orange: {
-    backgroundColor: 'orange',
-  },
-  container: {
-    width: 350,
-    height: 30,
-    marginVertical: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   safeArea: {
     flex: 1,
     alignItems: 'center',
   },
   text: {
-    color: 'white',
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
+
+const COLORS = [
+  { colorName: 'Base03', hexCode: '#002b36' },
+  { colorName: 'Base02', hexCode: '#073642' },
+  { colorName: 'Base01', hexCode: '#586e75' },
+  { colorName: 'Base00', hexCode: '#657b83' },
+  { colorName: 'Base0', hexCode: '#839496' },
+  { colorName: 'Base1', hexCode: '#93a1a1' },
+  { colorName: 'Base2', hexCode: '#eee8d5' },
+  { colorName: 'Base3', hexCode: '#fdf6e3' },
+  { colorName: 'Yellow', hexCode: '#b58900' },
+  { colorName: 'Orange', hexCode: '#cb4b16' },
+  { colorName: 'Red', hexCode: '#dc322f' },
+  { colorName: 'Magenta', hexCode: '#d33682' },
+  { colorName: 'Violet', hexCode: '#6c71c4' },
+  { colorName: 'Blue', hexCode: '#268bd2' },
+  { colorName: 'Cyan', hexCode: '#2aa198' },
+  { colorName: 'Green', hexCode: '#859900' },
+];
